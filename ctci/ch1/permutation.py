@@ -3,6 +3,7 @@ import unittest
 # Check permutation: given two strings, write a method to decide
 # if one is a permutation of the other.
 
+# O(n) Linear time solution
 def is_permutation(s1, s2):
   # If lengths of strings are not equal, cannot be permutations
   if len(s1) != len(s2):
