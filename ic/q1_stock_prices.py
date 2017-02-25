@@ -68,8 +68,12 @@ stock_prices_yesterday = [10, 7, 5, 8, 11, 9]
 # What if it goes down all day?
 #   - Return the best we could do while losing money
 
-# Approach 4, handling negative profit [O(n)]
+# Approach 4, handling negative profit [O(n) runtime, O(1) space]
+# Using a greedy approach, going through the list only once
+# And updating values along the way
+
 def get_max_profit(stock_prices_yesterday):
+
   # Make sure we have at least 2 prices
   if len(stock_prices_yesterday) < 2:
     raise IndexError('Getting a profit requires at least 2 prices')
