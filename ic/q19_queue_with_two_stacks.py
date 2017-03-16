@@ -24,3 +24,5 @@ class QueueTwoStacks:
         if (len(self.out_stack) == 0):
           raise IndexError('Cannot dequeue from empty queue')
       return self.out_stack.pop()
+
+# Complexity: O(m) time
