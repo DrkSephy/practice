@@ -1,6 +1,7 @@
 # Write a function that determines if an expression
 # is well-parenthesized.
 
+# Complexity: O(n) space, O(n) runtime
 def is_valid(code):
   openers_to_closers = {
     '(' : ')',
