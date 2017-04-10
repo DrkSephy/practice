@@ -8,6 +8,8 @@ def change(n, coins):
   for coin in coins:
     for i in range(coin, n + 1):
       arr[i] += arr[i - coin]
+  print arr
   return 0 if n == 0 else arr[n]
+  # print arr
 
 print change(5, [1, 2, 3])
