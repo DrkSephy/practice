@@ -22,5 +22,5 @@ def _find_pair(nleft, nright, curr_results, results):
       _find_pair(nleft, nright - 1, curr_results + [')'], results)
 
 
-print find_pair(2)
+print find_pair(4)
 
