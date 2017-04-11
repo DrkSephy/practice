@@ -10,6 +10,7 @@ def knapsack(items, maxweight):
     # "running capacities" from 0 up to and including the maximum weight W.
     bestvalues = [[0] * (maxweight + 1)
                   for i in xrange(len(items) + 1)]
+    print bestvalues
 
     # Enumerate through the items and fill in the best-value table
     for i, (value, weight) in enumerate(items):
@@ -20,6 +21,7 @@ def knapsack(items, maxweight):
             # Handle the case where the weight of the current item is greater
             # than the "running capacity" - we can't add it to the knapsack
             if weight > capacity:
+                # Take value from the top
                 bestvalues[i][capacity] = bestvalues[i - 1][capacity]
             else:
                 # Otherwise, we must choose between two possible candidate values:
@@ -35,7 +37,10 @@ def knapsack(items, maxweight):
                 # in effect "setting in stone" the best value so far for a particular
                 # prefix of the items, and for a particular "prefix" of knapsack capacities
                 bestvalues[i][capacity] = max(candidate1, candidate2)
-    print bestvalues
+    i = len(items)
+    while i > 0:
+        print bestvalues[i]
+        i -= 1
 
     # Reconstruction
     # Iterate through the values table, and check
@@ -58,27 +63,30 @@ def knapsack(items, maxweight):
     # in the order that it was given
     reconstruction.reverse()
 
-    print reconstruction
 
     # Return the best value, and the reconstruction list
     return bestvalues[len(items)][maxweight], reconstruction
 
+items = [[3, 5], [2, 6], [7, 10]]
+weight = 20
+print knapsack(items, weight)
 
-if __name__ == '__main__':
-    if len(sys.argv) != 2:
-        print('usage: knapsack.py [file]')
-        sys.exit(1)
+# if __name__ == '__main__':
+#     if len(sys.argv) != 2:
+#         print('usage: knapsack.py [file]')
+#         sys.exit(1)
 
-    filename = sys.argv[1]
-    with open(filename) as f:
-        lines = f.readlines()
+#     filename = sys.argv[1]
+#     with open(filename) as f:
+#         lines = f.readlines()
 
-    maxweight = int(lines[0])
-    items = [map(int, line.split()) for line in lines[1:]]
+#     maxweight = int(lines[0])
+#     items = [map(int, line.split()) for line in lines[1:]]
+#     print items
 
-    bestvalue, reconstruction = knapsack(items, maxweight)
+#     bestvalue, reconstruction = knapsack(items, maxweight)
 
-    print('Best possible value: {0}'.format(bestvalue))
-    print('Items:')
-    for value, weight in reconstruction:
-        print('V: {0}, W: {1}'.format(value, weight))
+#     print('Best possible value: {0}'.format(bestvalue))
+#     print('Items:')
+#     for value, weight in reconstruction:
+#         print('V: {0}, W: {1}'.format(value, weight))
